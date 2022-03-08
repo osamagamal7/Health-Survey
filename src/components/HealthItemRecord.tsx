@@ -4,7 +4,7 @@ import {TextProps, View, Pressable, StyleSheet} from 'react-native';
 
 import {AppText} from './AppText';
 import {HealthRangeWithTimestamp} from '../types';
-
+import {useAppContext} from '../context/Provider';
 import {theme} from '../assets';
 
 type HealthItemRecordType = TextProps & {

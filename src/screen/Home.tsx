@@ -5,17 +5,19 @@ import {AppInput} from '../components/AppInput';
 import {AppText} from '../components/AppText';
 import {Screen} from '../components/Screen';
 import {theme} from '../assets';
+import {useAppContext} from '../context/Provider';
 
 export const Home: React.FC = () => {
   const [sleepRange, setSleepRange] = useState<string | undefined>();
   const [skinRange, setSkinRange] = useState<string | undefined>();
+  const {handleSelectedRange} = useAppContext();
 
   const submitFormHandler = () => {
     // if one of the inputs is empty
     if (!sleepRange || !skinRange) {
       return;
     }
-
+    handleSelectedRange(+sleepRange, +skinRange);
     setSkinRange('');
     setSleepRange('');
   };

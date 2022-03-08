@@ -5,9 +5,10 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {Screen} from '../components/Screen';
 import {AppText} from '../components/AppText';
 import {HealthItemRecord} from '../components/HealthItemRecord';
+import {useAppContext} from '../context/Provider';
 
 export const History: React.FC = () => {
-  const healthRangeList = [];
+  const {healthRangeList} = useAppContext();
 
   return (
     <Screen>
