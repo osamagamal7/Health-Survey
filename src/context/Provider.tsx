@@ -9,23 +9,22 @@ type ContextProviderType = {
   children: React.ReactNode;
 };
 
+export const getAppData = async (): Promise<AppData | null> => {
+  try {
+    const data = await AsyncStorage.getItem('healthRecord');
+    if (data) {
+      return JSON.parse(data);
+    }
+    return null;
+  } catch {
+    return null;
+  }
+};
+
 export const AppProvider: React.FC<ContextProviderType> = ({children}) => {
   const [healthRangeList, setHealthRangeList] = React.useState<
     HealthRangeWithTimestamp[]
   >([]);
-
-  const getAppData = async (): Promise<AppData | null> => {
-    try {
-      const data = await AsyncStorage.getItem('healthRecord');
-
-      if (data) {
-        return JSON.parse(data);
-      }
-      return null;
-    } catch {
-      return null;
-    }
-  };
 
   const setAppData = async (newData: AppData) => {
     try {
@@ -46,6 +45,7 @@ export const AppProvider: React.FC<ContextProviderType> = ({children}) => {
     getDataFromStorage();
   }, []);
 
+  //it stores the input range and timestamp locally in Context && AsyncStorage
   const handleSelectedRange = (
     sleepQualityRange: number,
     skinQualityRange: number,
@@ -60,6 +60,7 @@ export const AppProvider: React.FC<ContextProviderType> = ({children}) => {
     });
   };
 
+  //it deletes the removed data locally in Context && AsyncStorage
   const handleDeleteRecord = useCallback((mood: HealthRangeWithTimestamp) => {
     setHealthRangeList(current => {
       const newValue = current.filter(
