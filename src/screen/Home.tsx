@@ -55,7 +55,7 @@ export const Home: React.FC = () => {
 
           <AppButton
             style={styles.btn}
-            testID="btn"
+            testID="submitBtn"
             onPress={submitFormHandler}>
             <AppText size={18} style={styles.submitBtn}>
               Submit
