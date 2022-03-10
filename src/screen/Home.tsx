@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 
 import {AppInput} from '../components/AppInput';
 import {AppText} from '../components/AppText';
+import {AppButton} from '../components/AppButton';
 import {Screen} from '../components/Screen';
 import {theme} from '../assets';
 import {useAppContext} from '../context/Provider';
@@ -37,6 +38,7 @@ export const Home: React.FC = () => {
             onChangeText={val => setSleepRange(val)}
             placeholder="Please Select a Number From 0 - 10"
             style={styles.input}
+            testID="sleepInput"
             value={sleepRange}
           />
 
@@ -47,13 +49,18 @@ export const Home: React.FC = () => {
             onChangeText={val => setSkinRange(val)}
             placeholder="Please Select a Number From 0 - 10"
             style={styles.input}
+            testID="skinInput"
             value={skinRange}
           />
-          <TouchableOpacity style={styles.btn} onPress={submitFormHandler}>
+
+          <AppButton
+            style={styles.btn}
+            testID="btn"
+            onPress={submitFormHandler}>
             <AppText size={18} style={styles.submitBtn}>
               Submit
             </AppText>
-          </TouchableOpacity>
+          </AppButton>
         </View>
       </ScrollView>
     </Screen>
